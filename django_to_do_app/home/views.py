@@ -6,6 +6,3 @@ from datetime import date, time, datetime
 
 def Home(request):
     return render(request, 'pages/home.html')
-
-def Demo(request):
-    return render(request, 'pages/demo.html')
