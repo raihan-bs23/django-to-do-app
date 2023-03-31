@@ -125,8 +125,14 @@
                             <form method="POST" >
                                     {% csrf_token %}
                                         <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                            <input type='text' value="{{ request.POST.todo_name }}" placeholder="Enter to-do name " class="form-control bg-light border-2 small" name="todo_name" style="width: 600px;">
-                                            <button type="submit" class="btn btn-primary ">Add</button>
+
+                                            <select name="todo_status" id="todo_status_name" class="form-control bg-light border-1 small">
+                                                <option value="" selected >Choose Category</option>
+                                                <option value="All Todo" >All Todo</option>
+                                                <option value="Completed" >Completed</option>
+                                                <option value="Pending" >Pending</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-primary ">Search</button>
                                         </div>
                                     <hr/>
 

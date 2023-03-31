@@ -53,13 +53,29 @@ def CompleteTodo(request, todo_id):
     return render(request, 'pages/todo.html', {'todos': todos})
 
 
+# def SearchTodo(request):
+#     print(".......... Before checking POST method")
+#     if request.method == "POST":
+#         print(".......... After checking POST method")
+#         if request.POST.get('todo_status'):
+#             todo_status = request.POST.get('todo_status_name')
+#             print(">>>>>>>>>>>", todo_status)
+#
+#  return render(request, 'pages/todo.html')
+
 def SearchTodo(request):
-    print(".......... Before checking POST method")
+    print(">>>>>>>>>>>Before")
+    h = TodoList.objects.none()
     if request.method == "POST":
-        print(".......... After checking POST method")
-        if request.POST.get('todo_status'):
-            todo_status = request.POST.get('todo_status_name')
-            print(">>>>>>>>>>>", todo_status)
+        todo_status = request.POST.get('todo_status')
+        if todo_status == 'Completed':
+            h = TodoList.objects.filter(is_completed="Yes").order_by('id')
+        elif todo_status == 'Pending':
+            h = TodoList.objects.filter(is_completed="No").order_by('id')
+        else:
+            h = TodoList.objects.all()
 
-    return render(request, 'pages/todo.html')
 
+    todos = h
+    print(">>>>>>>>>>>----", todos)
+    return render(request, 'pages/search_todo.html', {'todos': todos})
