@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('', include('TO_DO.urls')),
+    path('', include('ImageTest.urls'))
 ]

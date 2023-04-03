@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'TO_DO',
     'templates',
     'static',
-    'home'
+    'home',
+    'ImageTest',
 ]
 
 MIDDLEWARE = [
