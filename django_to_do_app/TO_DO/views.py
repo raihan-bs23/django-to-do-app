@@ -69,13 +69,27 @@ def SearchTodo(request):
     if request.method == "POST":
         todo_status = request.POST.get('todo_status')
         if todo_status == 'Completed':
-            h = TodoList.objects.filter(is_completed="Yes").order_by('id')
+            h = TodoList.objects.filter(is_completed="Yes").order_by('-id')
         elif todo_status == 'Pending':
-            h = TodoList.objects.filter(is_completed="No").order_by('id')
+            h = TodoList.objects.filter(is_completed="No").order_by('-id')
         else:
-            h = TodoList.objects.all()
-
-
+            h = TodoList.objects.all().order_by('-id')
     todos = h
     print(">>>>>>>>>>>----", todos)
     return render(request, 'pages/search_todo.html', {'todos': todos})
+
+
+def Demo(request):
+    print(">>>>>>>>>>>Before")
+    h = TodoList.objects.none()
+    if request.method == "POST":
+        todo_status = request.POST.get('todo_status')
+        if todo_status == 'Completed':
+            h = TodoList.objects.filter(is_completed="Yes").order_by('-id')
+        elif todo_status == 'Pending':
+            h = TodoList.objects.filter(is_completed="No").order_by('-id')
+        else:
+            h = TodoList.objects.all().order_by('-id')
+    todos = h
+    print(">>>>>>>>>>>----", todos)
+    return render(request, 'pages/demo.html', {'todos': todos})
